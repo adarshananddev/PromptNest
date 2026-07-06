@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import '../services/prompt_service.dart';
+import '../widgets/prompts_card.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final prompts = PromptService.getPrompts();
 
   @override
   Widget build(BuildContext context) {
@@ -98,34 +102,8 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 15),
 
-            Card(
-              elevation: 3,
-              child: ListTile(
-                leading: const CircleAvatar(
-                  child: Icon(Icons.auto_awesome),
-                ),
-                title: const Text("Create a YouTube Script"),
-                subtitle: const Text(
-                  "Generate engaging YouTube video scripts with AI.",
-                ),
-                trailing: const Icon(Icons.arrow_forward_ios),
-              ),
-            ),
-
-            const SizedBox(height: 10),
-
-            Card(
-              elevation: 3,
-              child: ListTile(
-                leading: const CircleAvatar(
-                  child: Icon(Icons.image),
-                ),
-                title: const Text("AI Image Prompt"),
-                subtitle: const Text(
-                  "Create realistic image prompts for AI image generators.",
-                ),
-                trailing: const Icon(Icons.arrow_forward_ios),
-              ),
+            ...prompts.map(
+              (prompt) => PromptCard(prompt: prompt),
             ),
 
             const SizedBox(height: 20),

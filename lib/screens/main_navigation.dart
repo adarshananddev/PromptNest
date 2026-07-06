@@ -16,13 +16,14 @@ class MainNavigation extends StatefulWidget {
 class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 0;
 
-  final List<Widget> _screens = const [
-    HomeScreen(),
-    SearchScreen(),
-    BuilderScreen(),
-    FavoritesScreen(),
-    ProfileScreen(),
-  ];
+final List<Widget> _screens = [
+  HomeScreen(),
+  const SearchScreen(),
+  const BuilderScreen(),
+  const FavoritesScreen(),
+  const ProfileScreen(),
+];
+
 
   void _onItemTapped(int index) {
     setState(() {
