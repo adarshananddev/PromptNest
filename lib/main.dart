@@ -13,10 +13,21 @@ class PromptNestApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'PromptNest',
+
       theme: ThemeData(
-        colorSchemeSeed: Colors.indigo,
         useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ),
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          elevation: 0,
+        ),
+        cardTheme: const CardThemeData(
+          elevation: 4,
+        ),
       ),
+
       home: MainNavigation(),
     );
   }

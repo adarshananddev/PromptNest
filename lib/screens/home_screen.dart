@@ -34,23 +34,45 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             const SizedBox(height: 10),
 
-            const Text(
-              "👋 Hello, Adarsh",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+        Container(
+  width: double.infinity,
+  padding: const EdgeInsets.all(20),
+  decoration: BoxDecoration(
+    gradient: const LinearGradient(
+      colors: [
+        Colors.deepPurple,
+        Colors.indigo,
+      ],
+    ),
+    borderRadius: BorderRadius.circular(20),
+  ),
+  child: const Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        "👋 Hello, Adarsh",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 28,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      SizedBox(height: 8),
+      Text(
+        "What would you like to create today?",
+        style: TextStyle(
+          color: Colors.white70,
+          fontSize: 16,
+        ),
+      ),
+    ],
+  ),
+),
+              
+              
+              
+            
 
-            const SizedBox(height: 8),
-
-            const Text(
-              "What would you like to create today?",
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey,
-              ),
-            ),
 
             const SizedBox(height: 25),
 

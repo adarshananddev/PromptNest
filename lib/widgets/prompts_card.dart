@@ -21,7 +21,7 @@ class _PromptCardState extends State<PromptCard> {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 15),
-      elevation: 3,
+      elevation: 6,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
@@ -39,10 +39,10 @@ class _PromptCardState extends State<PromptCard> {
           contentPadding: const EdgeInsets.all(16),
 
           leading: CircleAvatar(
-            radius: 28,
+            radius: 30,
             child: Text(
               widget.prompt.icon,
-              style: const TextStyle(fontSize: 22),
+              style: const TextStyle(fontSize: 20),
             ),
           ),
 
