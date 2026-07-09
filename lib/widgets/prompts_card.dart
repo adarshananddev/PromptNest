@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import '../models/prompt_model.dart';
 import '../screens/prompt_details_screen.dart';
 
-class PromptCard extends StatelessWidget {
+class PromptCard extends StatefulWidget {
   final PromptModel prompt;
 
   const PromptCard({
     super.key,
     required this.prompt,
   });
+
+  @override
+  State<PromptCard> createState() => _PromptCardState();
+}
+
+class _PromptCardState extends State<PromptCard> {
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,7 @@ class PromptCard extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => PromptDetailsScreen(prompt: prompt),
+              builder: (_) => PromptDetailsScreen(prompt: widget.prompt),
             ),
           );
         },
@@ -34,13 +41,13 @@ class PromptCard extends StatelessWidget {
           leading: CircleAvatar(
             radius: 28,
             child: Text(
-              prompt.icon,
+              widget.prompt.icon,
               style: const TextStyle(fontSize: 22),
             ),
           ),
 
           title: Text(
-            prompt.title,
+            widget.prompt.title,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -49,10 +56,29 @@ class PromptCard extends StatelessWidget {
 
           subtitle: Padding(
             padding: const EdgeInsets.only(top: 6),
-            child: Text(prompt.description),
+            child: Text(widget.prompt.description),
           ),
 
-          trailing: const Icon(Icons.arrow_forward_ios),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                onPressed: () {
+                  setState(() {
+                    isFavorite = !isFavorite;
+                  });
+                },
+                icon: Icon(
+                  isFavorite
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: Colors.red,
+                ),
+              ),
+
+              const Icon(Icons.arrow_forward_ios),
+            ],
+          ),
         ),
       ),
     );

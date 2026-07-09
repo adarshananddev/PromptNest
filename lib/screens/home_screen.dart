@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import '../services/prompt_service.dart';
 import '../widgets/prompts_card.dart';
+import '../models/prompt_model.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
-  final prompts = PromptService.getPrompts();
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final List<PromptModel> allPrompts = PromptService.getPrompts();
+  String searchText = "";
 
   @override
   Widget build(BuildContext context) {
+    final filteredPrompts = allPrompts.where((prompt) {
+      return prompt.title.toLowerCase().contains(searchText.toLowerCase()) ||
+          prompt.description.toLowerCase().contains(searchText.toLowerCase()) ||
+          prompt.category.toLowerCase().contains(searchText.toLowerCase());
+    }).toList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("PromptNest"),
@@ -42,6 +55,11 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 25),
 
             TextField(
+              onChanged: (value) {
+                setState(() {
+                  searchText = value;
+                });
+              },
               decoration: InputDecoration(
                 hintText: "Search prompts...",
                 prefixIcon: const Icon(Icons.search),
@@ -102,7 +120,7 @@ class HomeScreen extends StatelessWidget {
 
             const SizedBox(height: 15),
 
-            ...prompts.map(
+            ...filteredPrompts.map(
               (prompt) => PromptCard(prompt: prompt),
             ),
 
